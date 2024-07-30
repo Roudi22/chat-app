@@ -6,6 +6,7 @@ import { logo3, logo2 } from '../../../public';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Sidebar from '../Sidebar';
+import MessageContainer from './MessageContainer';
 interface ChatLayoutProps { defaultLayout: number[] | undefined }
 const ChatLayout = ({defaultLayout=[320,480]}:ChatLayoutProps) => {
     const [isCollapsed, setIsCollapsed] = React.useState(false);
@@ -41,12 +42,13 @@ const ChatLayout = ({defaultLayout=[320,480]}:ChatLayoutProps) => {
         </ResizablePanel>
         <ResizableHandle withHandle></ResizableHandle>
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-            <div className='flex justify-center items-center h-full w-full px-10'>
+            {/* <div className='flex justify-center items-center h-full w-full px-10'>
                 <div className='flex flex-col justify-center items-center gap-4'>
                     <Image src={theme === "light" ? logo2 : logo3} alt='logo' className='w-full md:w-2/3 lg:w-1/2' />
                     <p className='text-muted-foreground text-center'>Click on a chat to view the messages</p>
                 </div>
-            </div>
+            </div> */}
+            <MessageContainer/>
         </ResizablePanel>
     </ResizablePanelGroup>
   )
