@@ -15,7 +15,7 @@ interface SidebarProps {
 }
 const Sidebar = ({isCollapsed, users}:SidebarProps) => {
   const {user} = useKindeBrowserClient()
-  console.log("isAuthenticated",user)
+ 
   const {setSelectedUser, selectedUser} = useSelectedUser()
   return (
     <div className='group relative flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2 max-h-full overflow-auto bg-background'>

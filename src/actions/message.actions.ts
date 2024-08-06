@@ -41,7 +41,7 @@ export async function sendMessageAction ({content, messageType, recieverId}: sen
 export async function getMessagesAction (selectedUserId: string, currentUserId: string) {
     const conversationId = `conversation:${[selectedUserId, currentUserId].sort().join(":")}`;
 	const messageIds = await redis.zrange(`${conversationId}:messages`, 0, -1);
-    console.log("messageIds",messageIds)
+    
 	if (messageIds.length === 0) return [];
 
 	const pipeline = redis.pipeline();
