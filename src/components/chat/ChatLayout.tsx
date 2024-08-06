@@ -7,11 +7,14 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Sidebar from '../Sidebar';
 import MessageContainer from './MessageContainer';
-interface ChatLayoutProps { defaultLayout: number[] | undefined }
-const ChatLayout = ({defaultLayout=[320,480]}:ChatLayoutProps) => {
+import { User } from '@/db/dummy';
+import { useSelectedUser } from '@/store/useSelectedUser';
+interface ChatLayoutProps { defaultLayout: number[] | undefined; users: User[] }
+const ChatLayout = ({defaultLayout=[320,480], users }:ChatLayoutProps) => {
     const [isCollapsed, setIsCollapsed] = React.useState(false);
     const [isMobile, setIsMobile] = React.useState(false);
     const {theme} = useTheme()
+    const {selectedUser} = useSelectedUser()
     useEffect(() => { 
         const checkScreenWidth = () => { setIsMobile(window.innerWidth < 768) }
         checkScreenWidth()
@@ -38,17 +41,19 @@ const ChatLayout = ({defaultLayout=[320,480]}:ChatLayoutProps) => {
             }}
             className={cn(isCollapsed && "min-w-[80px] transition-all duration-300 ease-in-out")}
         >
-            <Sidebar isCollapsed={isCollapsed}/>
+            <Sidebar isCollapsed={isCollapsed} users={users}/>
         </ResizablePanel>
         <ResizableHandle withHandle></ResizableHandle>
         <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
-            {/* <div className='flex justify-center items-center h-full w-full px-10'>
+            {selectedUser ? <MessageContainer/> : (
+                <div className='flex justify-center items-center h-full w-full px-10'>
                 <div className='flex flex-col justify-center items-center gap-4'>
                     <Image src={theme === "light" ? logo2 : logo3} alt='logo' className='w-full md:w-2/3 lg:w-1/2' />
                     <p className='text-muted-foreground text-center'>Click on a chat to view the messages</p>
                 </div>
-            </div> */}
-            <MessageContainer/>
+            </div>
+            ) }
+            
         </ResizablePanel>
     </ResizablePanelGroup>
   )
