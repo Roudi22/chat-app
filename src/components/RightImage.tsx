@@ -10,9 +10,9 @@ const RightImage = () => {
       <Image
         src={theme === "dark" ? logo3 : logo2}
         alt="logo"
-        width={300}
+        width={theme === "dark" ? 280 : 500}
         height={280}
-        className={`mt-20 w-[${theme === "dark" ? "300px" : "500px"}] z-0 pointer-events-none select-none`}
+        className={`mt-20 z-0 pointer-events-none select-none`}
       />
     </div>
   );
