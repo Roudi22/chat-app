@@ -6,22 +6,26 @@ import AuthButtons from "./AuthButtons";
 import { useTheme } from "next-themes";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import PreferencesTap from "@/components/PreferencesTap";
+import RightImage from "@/components/RightImage";
 const page = async () => {
+  
   const {isAuthenticated} = getKindeServerSession()
   if ( await isAuthenticated()){ 
     return redirect('/')
   }
   return (
     <div className="flex h-screen w-full">
-      <div className="flex-1 flex overflow-hidden dark:bg-[#651c2b55] bg-[#cbf3fd] relative items-center justify-center px-4">
+      <div className="flex-1 flex overflow-hidden dark:bg-[#1c5e6e] bg-[#cbf3fd] relative items-center justify-center px-4">
       <Image src={logo3} alt="logo" className="absolute -left-32 opacity-25 -bottom-28 lg:scale-125 xl:scale-100 scale-[2] pointer-events-none select-none -z-1"/>
       <div className="flex border-[#000] flex-col gap-2 px-4 text-center md:text-start font-semibold">
-        <Image src={logo3} alt="logo" width={700} height={280} className="mt-20 w-[500px] z-0 pointer-events-none select-none"/>
+        <PreferencesTap/>
+        <RightImage/>
         <p className="text-2xl md:text-3xl text-balance z-10">
-            The <span className="bg-red-500 px-2 font-bold text-white">Ultimate</span> Chat App
+            The <span className="bg-red-500 px-2 font-bold text-white">Most Simple</span> Chat App
         </p>
         <p className="text-2xl md:text-3xl mb-32 text-balance z-10">
-            You <span className="bg-green-500/90 px-2 font-bold text-white">Need To</span> Build
+            You <span className="bg-green-500/90 px-2 font-bold text-white">Need To</span> Try
         </p>
         <AuthButtons/>
       </div>
