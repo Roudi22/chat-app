@@ -18,7 +18,9 @@ async function getUsers(): Promise<User[]> {
 
     const {getUser} = getKindeServerSession()
     const currentUser = await getUser()
-
+    if (userKeys.length === 0) {
+      return [];
+    }
     const pipeline = redis.pipeline()
     userKeys.forEach(key => pipeline.hgetall(key))
     const results = (await pipeline.exec()) as User[]
