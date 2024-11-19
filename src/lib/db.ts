@@ -1,6 +1,6 @@
 import {Redis} from "@upstash/redis"
-const redisUrl = "https://first-monkey-53353.upstash.io"
-const redisToken = "AdBpAAIjcDFhNjcwNWJlZWRmNzQ0ZmI3YWE3YTBmMDk2M2M2YjBjMHAxMA"
+const redisUrl = "https://unbiased-airedale-28467.upstash.io"
+const redisToken = "AW8zAAIjcDFiODMyZjI1OTZmNGM0ZjgyYjNiYzU5ZGI1MmQxYWI5ZHAxMA"
 
 export const redis = new Redis({ 
     url: redisUrl,
